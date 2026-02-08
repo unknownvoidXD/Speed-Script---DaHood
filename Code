@@ -22,49 +22,49 @@ mainFrame.Active = true
 mainFrame.Draggable = true
 mainFrame.Parent = screenGui
  
--- Função correta para criar fantasmas 💀 pequenos em posições aleatórias
-local skullCount = 7 -- quantidade de fantasmas no fundo
+-- Função correta para criar fantasmas 👻 pequenos em posições aleatórias
+local ghostCount = 7 -- quantidade de fantasmas no fundo
 local frameWidth = mainFrame.Size.X.Offset
 local frameHeight = mainFrame.Size.Y.Offset
  
 for i = 1, ghostCount do
     local ghost = Instance.new("TextLabel")
-    skull.Size = UDim2.new(0, 18, 0, 18)
-    skull.BackgroundTransparency = 1
-    skull.Text = "💀"
-    skull.TextColor3 = Color3.fromRGB(70, 70, 90) -- fantasma discreto
-    skull.Font = Enum.Font.SourceSansBold
-    skull.TextSize = 18
-    skull.ZIndex = 9
+    ghost.Size = UDim2.new(0, 18, 0, 18)
+    ghost.BackgroundTransparency = 1
+    ghost.Text = "👻"
+    ghost.TextColor3 = Color3.fromRGB(70, 70, 90) -- fantasma discreto
+    ghost.Font = Enum.Font.SourceSansBold
+    ghost.TextSize = 18
+    ghost.ZIndex = 9
     -- Posição aleatória dentro do mainFrame (ajustada para não sair fora)
     local x = math.random(0, frameWidth - 18)
     local y = math.random(0, frameHeight - 18)
-    skull.Position = UDim2.new(0, x, 0, y)
-    skull.Parent = mainFrame
+    ghost.Position = UDim2.new(0, x, 0, y)
+    ghost.Parent = mainFrame
 end
  
--- Botão transparente, texto azul "ghosts", troca para 💀 quando ativado
-local skullButton = Instance.new("TextButton")
-skullsButton.Size = UDim2.new(1, -14, 1, -14)
-skullsButton.Position = UDim2.new(0, 7, 0, 7)
-skullsButton.Text = "ghosts"
-skullsButton.BackgroundTransparency = 1 -- transparente para mostrar os fantasmas
-skullsButton.TextColor3 = Color3.fromRGB(20, 110, 255) -- azul forte
-skullsButton.Font = Enum.Font.SourceSansBold
-skullsButton.TextSize = 28
-skullsButton.ZIndex = 11
-skullsButton.Parent = mainFrame
+-- Botão transparente, texto azul "ghosts", troca para 👻 quando ativado
+local ghostsButton = Instance.new("TextButton")
+ghostsButton.Size = UDim2.new(1, -14, 1, -14)
+ghostsButton.Position = UDim2.new(0, 7, 0, 7)
+ghostsButton.Text = "ghosts"
+ghostsButton.BackgroundTransparency = 1 -- transparente para mostrar os fantasmas
+ghostsButton.TextColor3 = Color3.fromRGB(20, 110, 255) -- azul forte
+ghostsButton.Font = Enum.Font.SourceSansBold
+ghostsButton.TextSize = 28
+ghostsButton.ZIndex = 11
+ghostsButton.Parent = mainFrame
  
 mainFrame.ZIndex = 10
 screenGui.DisplayOrder = 1000
  
-skullsButton.MouseButton1Click:Connect(function()
+ghostsButton.MouseButton1Click:Connect(function()
     enabled = not enabled
     if enabled then
-        skullsButton.Text = "💀"
-        skullsButton.TextColor3 = Color3.fromRGB(20, 110, 255)
+        ghostsButton.Text = "👻"
+        ghostsButton.TextColor3 = Color3.fromRGB(20, 110, 255)
     else
-        ghostsButton.Text = "skull"
+        ghostsButton.Text = "ghosts"
         ghostsButton.TextColor3 = Color3.fromRGB(20, 110, 255)
         -- Resetar velocidade ao padrão
         if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
@@ -80,4 +80,4 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
 end)
  
--- Por: Copilot - SPEED skull oficial
+-- Por: Copilot - SPEED ghosts oficial
