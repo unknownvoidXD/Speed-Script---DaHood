@@ -1,0 +1,83 @@
+--// SPEED ghosts (ROBLOX)
+--// Versão oficial
+ 
+-- Configuração inicial
+local maxSpeed = 325 -- velocidade máxima
+local enabled = false
+ 
+-- Interface Gráfica (um botão azul "ghosts", fundo preto, fantasmas 👻 pequenos e aleatórios)
+local player = game.Players.LocalPlayer
+ 
+-- Cria o ScreenGui apenas se não existir
+local screenGui = player.PlayerGui:FindFirstChild("SpeedGhostsGui") or Instance.new("ScreenGui")
+screenGui.Name = "SpeedGhostsGui"
+screenGui.Parent = player.PlayerGui
+ 
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 160, 0, 54)
+mainFrame.Position = UDim2.new(0, 30, 0, 100)
+mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- fundo preto
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+ 
+-- Função correta para criar fantasmas 💀 pequenos em posições aleatórias
+local skullCount = 7 -- quantidade de fantasmas no fundo
+local frameWidth = mainFrame.Size.X.Offset
+local frameHeight = mainFrame.Size.Y.Offset
+ 
+for i = 1, ghostCount do
+    local ghost = Instance.new("TextLabel")
+    skull.Size = UDim2.new(0, 18, 0, 18)
+    skull.BackgroundTransparency = 1
+    skull.Text = "💀"
+    skull.TextColor3 = Color3.fromRGB(70, 70, 90) -- fantasma discreto
+    skull.Font = Enum.Font.SourceSansBold
+    skull.TextSize = 18
+    skull.ZIndex = 9
+    -- Posição aleatória dentro do mainFrame (ajustada para não sair fora)
+    local x = math.random(0, frameWidth - 18)
+    local y = math.random(0, frameHeight - 18)
+    skull.Position = UDim2.new(0, x, 0, y)
+    skull.Parent = mainFrame
+end
+ 
+-- Botão transparente, texto azul "ghosts", troca para 💀 quando ativado
+local skullButton = Instance.new("TextButton")
+skullsButton.Size = UDim2.new(1, -14, 1, -14)
+skullsButton.Position = UDim2.new(0, 7, 0, 7)
+skullsButton.Text = "ghosts"
+skullsButton.BackgroundTransparency = 1 -- transparente para mostrar os fantasmas
+skullsButton.TextColor3 = Color3.fromRGB(20, 110, 255) -- azul forte
+skullsButton.Font = Enum.Font.SourceSansBold
+skullsButton.TextSize = 28
+skullsButton.ZIndex = 11
+skullsButton.Parent = mainFrame
+ 
+mainFrame.ZIndex = 10
+screenGui.DisplayOrder = 1000
+ 
+skullsButton.MouseButton1Click:Connect(function()
+    enabled = not enabled
+    if enabled then
+        skullsButton.Text = "💀"
+        skullsButton.TextColor3 = Color3.fromRGB(20, 110, 255)
+    else
+        ghostsButton.Text = "skull"
+        ghostsButton.TextColor3 = Color3.fromRGB(20, 110, 255)
+        -- Resetar velocidade ao padrão
+        if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+            player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = 16
+        end
+    end
+end)
+ 
+-- Loop para aplicar speed máxima
+game:GetService("RunService").RenderStepped:Connect(function()
+    if enabled and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+        player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = maxSpeed
+    end
+end)
+ 
+-- Por: Copilot - SPEED skull oficial
